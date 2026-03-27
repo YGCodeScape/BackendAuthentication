@@ -1,9 +1,12 @@
-//  start server 
+// start server
 const app = require('./src/app');
-const connectDB = require('./src/db/db');
+const { connectDB } = require('./src/db/db');
 
-connectDB();
+const PORT = 3000;
 
-app.listen(3000, () => {
-    console.log("server is running on port 3000");
+// Connect DB then start server
+connectDB().then(() => {
+    app.listen(PORT, () => {
+        console.log(`Server running on http://localhost:${PORT}`);
+    });
 });
