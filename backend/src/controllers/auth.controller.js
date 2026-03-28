@@ -34,8 +34,12 @@ const registerUser = async (req, res) => {
 
         const token = jwt.sign({
            id: user.id,
-        }, "7e8457a06e97fceb89fecc6edc1752f9944b330895045995");
-        res.cookie("token", token);
+        }, process.env.JWT_SECRET);
+        res.cookie("token", token, {
+                httpOnly: true,
+                secure: true, // only https
+                sameSite: "Strict"
+        });
 
         res.status(201).json({
             message: "User registered successfully",
@@ -83,8 +87,12 @@ const loginUser = async(req, res) => {
 
         const token = jwt.sign({
             id: user.id,
-        },"7e8457a06e97fceb89fecc6edc1752f9944b330895045995");
-        res.cookie("token", token);
+        },process.env.JWT_SECRET);
+        res.cookie("token", token, {
+                httpOnly: true,
+                secure: true, // only https
+                sameSite: "Strict"
+        });
 
         res.status(200).json({
             message: "User logged in successfully",
