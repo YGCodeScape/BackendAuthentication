@@ -11,7 +11,7 @@ const app = express();
 app.use(cookieParser());
 app.use(express.json());
 
-// prefix API
+// prefix API for user authentication
 app.use('/api/auth', authRoutes);
 
 // Test route

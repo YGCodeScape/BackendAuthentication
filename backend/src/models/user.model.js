@@ -23,6 +23,11 @@ const User = {
         const [rows] = await pool.execute("SELECT * FROM users");
         return rows;
     },
+    //find one user
+    findOne: async (id) => {
+        const [rows] = await pool.execute("SELECT * FROM users WHERE id = ?", [id]);
+        return rows[0];
+    },
 
     // Find by Email
     findByEmail: async (email) => {
